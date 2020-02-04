@@ -3,7 +3,9 @@
   "description": "Demo Scalability Framework library",
   "main": "NewActivity.xaml",
   "dependencies": {
+    "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
     "UiPath.Excel.Activities": "2.8.0-preview",
+    "UiPath.Mail.Activities": "1.7.2",
     "UiPath.System.Activities": "19.12.0-preview",
     "UiPath.UIAutomation.Activities": "19.12.0-preview",
     "UiPath.WebAPI.Activities": "1.4.4"
@@ -11,7 +13,7 @@
   "webServices": [],
   "schemaVersion": "4.0",
   "studioVersion": "19.12.0.61",
-  "projectVersion": "1.0.4",
+  "projectVersion": "1.0.5",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,

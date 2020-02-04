@@ -7,7 +7,8 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>499.111111111111,590.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:Annotation.AnnotationText>UPTF00000138eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiVXRpbGl0eSB0byBnZXQgYW4gb3V0bG9vayBmb2xkZXIuIE91dHB1dCBpcyBPYmplY3QgYmVjYXVzZSBXRiBkb2Vzbid0IHBsYXkgbmljZSB3aXRoIEludGVyZmFjZXMuIENhc3QgaXQgdG8gTUFQSUZvbGRlciBpbiB0aGUgY2FsbGVyIiwiPFZlcnNpb24+a19fQmFja2luZ0ZpZWxkIjoxfQ==</sap2010:Annotation.AnnotationText>
+  <sap:VirtualizedContainerService.HintSize>499.111111111111,550.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,7 +61,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Utility to get an outlook folder. Output is Object because WF doesn't play nice with Interfaces. Cast it to MAPIFolder in the caller" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
     </Sequence.Variables>
@@ -71,7 +72,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="437.333333333333,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xD;&#xA;outlookApp = New Application&#xD;&#xA;Dim myFolder As MAPIFolder&#xD;&#xA;myFolder = outlookApp.Session.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Store.GetRootFolder()&#xD;&#xA;&#xD;&#xA;Dim navPath As String() = FolderName.Split(&quot;\&quot;c)&#xD;&#xA;For Each iFolder As String In navPath&#xD;&#xA;&#x9;Dim childFolder As MAPIFolder&#xD;&#xA;&#x9;childFolder = Nothing&#xD;&#xA;&#x9;For Each jFolder As MAPIFolder In myFolder.Folders&#xD;&#xA;&#x9;&#x9;If jFolder.Name = iFolder Then&#xD;&#xA;&#x9;&#x9;&#x9;childFolder = myFolder.Folders(iFolder)&#xD;&#xA;&#x9;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;If childFolder Is Nothing Then&#xD;&#xA;&#x9;&#x9;If ShouldCreateIfDoesNotExist Then&#xD;&#xA;&#x9;&#x9;&#x9;myFolder.Folders.Add(iFolder)&#xD;&#xA;&#x9;&#x9;&#x9;myFolder = myFolder.Folders(iFolder)&#xD;&#xA;&#x9;&#x9;Else&#xD;&#xA;&#x9;&#x9;&#x9;Throw New BusinessRuleException(&quot;Folder does not exist: &quot; + iFolder + &quot; in &quot; + myFolder.FolderPath)&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;Else&#xD;&#xA;&#x9;&#x9;myFolder = childFolder&#xD;&#xA;&#x9;End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;OutFolder = myFolder" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xA;outlookApp = New Application&#xA;Dim myFolder As MAPIFolder&#xA;myFolder = outlookApp.Session.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Store.GetRootFolder()&#xA;&#xA;Dim navPath As String() = FolderName.Split(&quot;\&quot;c)&#xA;For Each iFolder As String In navPath&#xA;&#x9;Dim childFolder As MAPIFolder&#xA;&#x9;childFolder = Nothing&#xA;&#x9;For Each jFolder As MAPIFolder In myFolder.Folders&#xA;&#x9;&#x9;If jFolder.Name = iFolder Then&#xA;&#x9;&#x9;&#x9;childFolder = myFolder.Folders(iFolder)&#xA;&#x9;&#x9;&#x9;Exit For&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;&#x9;If childFolder Is Nothing Then&#xA;&#x9;&#x9;If ShouldCreateIfDoesNotExist Then&#xA;&#x9;&#x9;&#x9;myFolder.Folders.Add(iFolder)&#xA;&#x9;&#x9;&#x9;myFolder = myFolder.Folders(iFolder)&#xA;&#x9;&#x9;Else&#xA;&#x9;&#x9;&#x9;Throw New BusinessRuleException(&quot;Folder does not exist: &quot; + iFolder + &quot; in &quot; + myFolder.FolderPath)&#xA;&#x9;&#x9;End If&#xA;&#x9;Else&#xA;&#x9;&#x9;myFolder = childFolder&#xA;&#x9;End If&#xA;Next&#xA;&#xA;OutFolder = myFolder" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
           <ui:InvokeCode.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
             <OutArgument x:TypeArguments="x:Object" x:Key="OutFolder">[OutFolder]</OutArgument>

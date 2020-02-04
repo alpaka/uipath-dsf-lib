@@ -6,7 +6,8 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>499.111111111111,678.222222222222</sap:VirtualizedContainerService.HintSize>
+  <sap2010:Annotation.AnnotationText>UPTF00000140eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiSW1wb3J0IGEgLm1zZyBmaWxlLiBNYWtlIHN1cmUgTVNHUGF0aCBpcyBhYnNvbHV0ZSBhbmQgdG8gaW1wb3J0IHRoZSBNaWNyb3NvZnQuT2ZmaWNlLkludGVyb3AuT3V0bG9vayBuYW1lc3BhY2UgbWFudWFsbHkgaW4gdGhlIGNhbGxpbmcgZmlsZSIsIjxWZXJzaW9uPmtfX0JhY2tpbmdGaWVsZCI6MX0=</sap2010:Annotation.AnnotationText>
+  <sap:VirtualizedContainerService.HintSize>499.111111111111,718.222222222222</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -59,7 +60,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,618.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Import a .msg file. Make sure MSGPath is absolute and to import the Microsoft.Office.Interop.Outlook namespace manually in the calling file" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,618.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
       <Variable x:TypeArguments="x:Object" Name="myFolder" />
