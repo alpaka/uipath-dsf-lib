@@ -1,14 +1,16 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="zz_Test" this:zz_Test.FolderName="Inbox\NewFolder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="zz_Test" this:zz_Test.FolderName="Inbox\NewFolder" this:zz_Test.ShouldCreateIfDoesNotExist="True" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FolderName" Type="InArgument(x:String)" />
+    <x:Property Name="ShouldCreateIfDoesNotExist" Type="InArgument(x:Boolean)" />
+    <x:Property Name="OutFolder" Type="OutArgument(x:Object)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>495.555555555556,425.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>499.111111111111,590.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="22">
+    <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -31,10 +33,10 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
       <x:String>Microsoft.Office.Interop.Outlook</x:String>
-    </scg:List>
+    </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+    <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -56,9 +58,9 @@
       <AssemblyReference>Microsoft.Office.Interop.Outlook</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-    </scg:List>
+    </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="475.555555555556,365.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
     </Sequence.Variables>
@@ -67,19 +69,21 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="523.555555555556,448.888888888889" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="437.333333333333,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xA;outlookApp = New Application&#xA;Dim folder As MAPIFolder &#xA;folder = outlookApp.Session.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Store.GetRootFolder()&#xA;&#xA;Dim navPath As String() = FolderName.Split(&quot;\&quot;c)&#xA;For Each iFolder As String In navPath&#xA;&#x9;Dim childFolder As MAPIFolder&#xA;&#x9;childFolder = Nothing&#xA;&#x9;For Each jFolder As MAPIFolder In folder.Folders&#xA;&#x9;&#x9;If jFolder.Name = iFolder Then&#xA;&#x9;&#x9;&#x9;childFolder = folder.Folders(iFolder)&#xA;&#x9;&#x9;&#x9;Exit For&#xA;&#x9;&#x9;End If&#xA;&#x9;Next&#xA;&#x9;If childFolder Is Nothing Then&#xA;&#x9;&#x9;folder = folder.Folders.Add(iFolder)&#xA;&#x9;Else&#xA;&#x9;&#x9;folder = childFolder&#xA;&#x9;End If&#xA;Next&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xD;&#xA;outlookApp = New Application&#xD;&#xA;Dim myFolder As MAPIFolder&#xD;&#xA;myFolder = outlookApp.Session.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Store.GetRootFolder()&#xD;&#xA;&#xD;&#xA;Dim navPath As String() = FolderName.Split(&quot;\&quot;c)&#xD;&#xA;For Each iFolder As String In navPath&#xD;&#xA;&#x9;Dim childFolder As MAPIFolder&#xD;&#xA;&#x9;childFolder = Nothing&#xD;&#xA;&#x9;For Each jFolder As MAPIFolder In myFolder.Folders&#xD;&#xA;&#x9;&#x9;If jFolder.Name = iFolder Then&#xD;&#xA;&#x9;&#x9;&#x9;childFolder = myFolder.Folders(iFolder)&#xD;&#xA;&#x9;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;If childFolder Is Nothing Then&#xD;&#xA;&#x9;&#x9;If ShouldCreateIfDoesNotExist Then&#xD;&#xA;&#x9;&#x9;&#x9;myFolder.Folders.Add(iFolder)&#xD;&#xA;&#x9;&#x9;&#x9;myFolder = myFolder.Folders(iFolder)&#xD;&#xA;&#x9;&#x9;Else&#xD;&#xA;&#x9;&#x9;&#x9;Throw New BusinessRuleException(&quot;Folder does not exist: &quot; + iFolder + &quot; in &quot; + myFolder.FolderPath)&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;Else&#xD;&#xA;&#x9;&#x9;myFolder = childFolder&#xD;&#xA;&#x9;End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;OutFolder = myFolder" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
           <ui:InvokeCode.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
+            <OutArgument x:TypeArguments="x:Object" x:Key="OutFolder">[OutFolder]</OutArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="ShouldCreateIfDoesNotExist">[ShouldCreateIfDoesNotExist]</InArgument>
           </ui:InvokeCode.Arguments>
         </ui:InvokeCode>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="489.777777777778,281.777777777778" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.555555555556,22.6666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -89,7 +93,7 @@
             </ActivityAction.Argument>
             <If Condition="[Not ex.InnerException Is Nothing]" sap:VirtualizedContainerService.HintSize="483.555555555556,211.111111111111" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Throw Exception="[ex.InnerException]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                <Throw Exception="[ex.InnerException]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Throw_1" />
               </If.Then>
               <If.Else>
                 <Rethrow sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
