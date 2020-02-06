@@ -70,7 +70,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FindOutlookFolder workflow" sap:VirtualizedContainerService.HintSize="437.333333333333,87.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="FindOutlookFolder.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FindOutlookFolder workflow" sap:VirtualizedContainerService.HintSize="437.333333333333,87.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Outlook/FindOutlookFolder.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
         <InArgument x:TypeArguments="x:Boolean" x:Key="ShouldCreateIfDoesNotExist">True</InArgument>
