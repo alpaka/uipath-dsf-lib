@@ -1,13 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="zz_Test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="zz_Test" this:zz_Test.ForwardToMyself="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FolderName" Type="InArgument(x:String)" />
     <x:Property Name="MSGPath" Type="InArgument(x:String)" />
+    <x:Property Name="ForwardToMyself" Type="InArgument(x:Boolean)" />
+    <x:Property Name="Subject" Type="OutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
   <sap2010:Annotation.AnnotationText>UPTF00000140eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiSW1wb3J0IGEgLm1zZyBmaWxlLiBNYWtlIHN1cmUgTVNHUGF0aCBpcyBhYnNvbHV0ZSBhbmQgdG8gaW1wb3J0IHRoZSBNaWNyb3NvZnQuT2ZmaWNlLkludGVyb3AuT3V0bG9vayBuYW1lc3BhY2UgbWFudWFsbHkgaW4gdGhlIGNhbGxpbmcgZmlsZSIsIjxWZXJzaW9uPmtfX0JhY2tpbmdGaWVsZCI6MX0=</sap2010:Annotation.AnnotationText>
-  <sap:VirtualizedContainerService.HintSize>499.111111111111,718.222222222222</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>545.333333333333,869.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -60,7 +62,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Import a .msg file. Make sure MSGPath is absolute and to import the Microsoft.Office.Interop.Outlook namespace manually in the calling file" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,618.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Import a .msg file. Make sure MSGPath is absolute and to import the Microsoft.Office.Interop.Outlook namespace manually in the calling file" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="525.333333333333,769.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
       <Variable x:TypeArguments="x:Object" Name="myFolder" />
@@ -68,22 +70,29 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FindOutlookFolder workflow" sap:VirtualizedContainerService.HintSize="437.333333333333,87.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Outlook/FindOutlookFolder.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="ShouldCreateIfDoesNotExist">True</InArgument>
-        <OutArgument x:TypeArguments="x:Object" x:Key="OutFolder">[myFolder]</OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="437.333333333333,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <If Condition="[Not FolderName Is Nothing]" sap:VirtualizedContainerService.HintSize="483.555555555556,238.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FindOutlookFolder workflow" sap:VirtualizedContainerService.HintSize="333.777777777778,87.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Outlook/FindOutlookFolder.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="ShouldCreateIfDoesNotExist">True</InArgument>
+            <OutArgument x:TypeArguments="x:Object" x:Key="OutFolder">[myFolder]</OutArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </If.Then>
+    </If>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="483.555555555556,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xA;outlookApp = New Application&#xA;&#xA;Dim mItem As MailItem&#xA;mItem = DirectCast(outlookApp.Session.OpenSharedItem(MSGPath), MailItem)&#xA;mItem.Move(DirectCast(myFolder, MAPIFolder))" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xD;&#xA;outlookApp = New Application&#xD;&#xA;&#xD;&#xA;Dim mItem As MailItem&#xD;&#xA;mItem = DirectCast(outlookApp.Session.OpenSharedItem(MSGPath), MailItem)&#xD;&#xA;If Not myFolder Is Nothing&#xD;&#xA;&#x9;mItem.Move(DirectCast(myFolder, MAPIFolder))&#xD;&#xA;End If&#xD;&#xA;Subject = mItem.Subject&#xD;&#xA;&#xD;&#xA;Dim mItemNew As MailItem&#xD;&#xA;If ForwardToMyself Then&#xD;&#xA;&#x9;mItemNew = mItem.Forward()&#xD;&#xA;&#x9;mItemNew.Subject = mItem.Subject&#xD;&#xA;&#x9;For Each Acc As Account In outlookApp.Session.Accounts&#xD;&#xA;&#x9;&#x9;mItemNew.Recipients.Add(Acc.SmtpAddress)&#xD;&#xA;&#x9;&#x9;mItemNew.SendUsingAccount = Acc&#xD;&#xA;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;mItemNew.Send&#xD;&#xA;End If" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
           <ui:InvokeCode.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
             <InArgument x:TypeArguments="x:Object" x:Key="myFolder">[myFolder]</InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="MSGPath">[MSGPath]</InArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="ForwardToMyself">[ForwardToMyself]</InArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="Subject">[Subject]</OutArgument>
           </ui:InvokeCode.Arguments>
         </ui:InvokeCode>
       </TryCatch.Try>

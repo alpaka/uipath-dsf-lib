@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Activity mc:Ignorable="sap sap2010" x:Class="ImportOutlookMSGFile_Test" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="472.888888888889,468" sap2010:WorkflowViewState.IdRef="ImportOutlookMSGFile_Test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ImportOutlookMSGFile_Test" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="472.888888888889,530.222222222222" sap2010:WorkflowViewState.IdRef="ImportOutlookMSGFile_Test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -44,21 +43,22 @@
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ImportOutlookMSGFile_Test" sap:VirtualizedContainerService.HintSize="452.888888888889,408" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ImportOutlookMSGFile_Test" sap:VirtualizedContainerService.HintSize="452.888888888889,470.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.111111111111,315.555555555556" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.EnumerateFiles(&quot;C:\Users\stefan.reutter\Documents\UiPath\SharedDemos\SSD-SAPSuperDemo_Stable\DEMO_DOCUMENTS\email_samples&quot;, &quot;*.msg&quot;)]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.111111111111,377.777777777778" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Directory.EnumerateFiles(&quot;C:\Users\stefan.reutter\Documents\UiPath\SharedDemos\uipath-invoice2sap\DEMO_DOCUMENTS\email_samples&quot;, &quot;*.msg&quot;)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.555555555556,180" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.555555555556,242.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -66,10 +66,13 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ImportOutlookMSGFile workflow" sap:VirtualizedContainerService.HintSize="333.777777777778,87.5555555555556" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Outlook/ImportOutlookMSGFile.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="FolderName">Inbox\Invoice2SAP</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="FolderName" />
                 <InArgument x:TypeArguments="x:String" x:Key="MSGPath">[item]</InArgument>
+                <InArgument x:TypeArguments="x:Boolean" x:Key="ForwardToMyself">True</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="Subject" />
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
+            <ui:Break sap:VirtualizedContainerService.HintSize="333.777777777778,22.2222222222222" sap2010:WorkflowViewState.IdRef="Break_1" />
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>

@@ -60,7 +60,7 @@
     </ui:UiElementExists>
     <If Condition="[Not outlookExists]" sap:VirtualizedContainerService.HintSize="578.222222222222,382.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <ui:OpenApplication ApplicationWindow="{x:Null}" Arguments="{x:Null}" TimeoutMS="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Open Application 'OUTLOOK.EXE Inbox'" FileName="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" sap:VirtualizedContainerService.HintSize="433.777777777778,231.555555555556" sap2010:WorkflowViewState.IdRef="OpenApplication_1" InformativeScreenshot="f8cd374fbdcd2e6917cca6641a427b4f" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;">
+        <ui:OpenApplication ApplicationWindow="{x:Null}" Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Open Application 'OUTLOOK.EXE Inbox'" FileName="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" sap:VirtualizedContainerService.HintSize="433.777777777778,231.555555555556" sap2010:WorkflowViewState.IdRef="OpenApplication_1" InformativeScreenshot="f8cd374fbdcd2e6917cca6641a427b4f" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;" TimeoutMS="60000">
           <ui:OpenApplication.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
