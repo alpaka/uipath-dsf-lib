@@ -15,6 +15,7 @@
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>InsightsOrchAPI</x:String>
       <x:String>System.Activities</x:String>
+      <x:String>System</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -23,6 +24,11 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>InsightsOrchAPI</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="304,516.444444444444" sap2010:WorkflowViewState.IdRef="Sequence_1">

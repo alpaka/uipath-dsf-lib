@@ -6,6 +6,7 @@
     <x:Property Name="Tenant" Type="InArgument(x:String)" />
     <x:Property Name="Roles" Type="InArgument(scg:ICollection(x:String))" />
     <x:Property Name="BearerToken" Type="InArgument(x:String)" />
+    <x:Property Name="Email" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -62,7 +63,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="304,616.888888888889" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="304,717.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="headers" />
       <Variable x:TypeArguments="i:UserDto" Default="[New UserDto]" Name="user" />
@@ -110,6 +111,14 @@
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="scg:ICollection(x:String)">[Roles]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[user.EmailAddress]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Email]</InArgument>
       </Assign.Value>
     </Assign>
     <uwu:PostActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="Post User" Endpoint="[&quot;https://orchestrator.southcentralus.cloudapp.azure.com&quot;]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="262.222222222222,22.2222222222222" sap2010:WorkflowViewState.IdRef="PostActivity_1" TimeoutMS="30000">
