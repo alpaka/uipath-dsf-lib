@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="AddUser" this:AddUser.OrchestratorURL="https://orchestrator.southcentralus.cloudapp.azure.com/" this:AddUser.Tenant="Default" this:AddUser.Roles="[{&quot;Administrator&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:i="clr-namespace:InsightsOrchAPI;assembly=InsightsOrchAPI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:uwu="clr-namespace:UiPath.WebClient.UsersClientNamespace;assembly=InsightsOrchAPI" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="AddUser" this:AddUser.OrchestratorURL="https://orchestrator.southcentralus.cloudapp.azure.com/" this:AddUser.Tenant="Default" this:AddUser.Roles="[{&quot;Administrator&quot;}]" this:AddUser.OverwriteIfExists="True" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:i="clr-namespace:InsightsOrchAPI;assembly=InsightsOrchAPI" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:uwu="clr-namespace:UiPath.WebClient.UsersClientNamespace;assembly=InsightsOrchAPI" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Username" Type="InArgument(x:String)" />
     <x:Property Name="Password" Type="InArgument(x:String)" />
@@ -7,11 +7,12 @@
     <x:Property Name="Roles" Type="InArgument(scg:ICollection(x:String))" />
     <x:Property Name="BearerToken" Type="InArgument(x:String)" />
     <x:Property Name="Email" Type="InArgument(x:String)" />
+    <x:Property Name="OverwriteIfExists" Type="InArgument(x:Boolean)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>395.555555555556,342.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>831.555555555556,1474.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddUser_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -42,7 +43,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -61,19 +62,22 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>InsightsOrchAPI</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="304,717.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="811.555555555556,1374.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="headers" />
       <Variable x:TypeArguments="i:UserDto" Default="[New UserDto]" Name="user" />
+      <Variable x:TypeArguments="i:ODataResponseOfListOfUserDto" Name="getUserResponse" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[headers]</OutArgument>
       </Assign.To>
@@ -81,7 +85,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[New Dictionary(Of String, String)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[headers("Authorization")]</OutArgument>
       </Assign.To>
@@ -89,7 +93,7 @@
         <InArgument x:TypeArguments="x:String">["Bearer " + BearerToken]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[user.UserName]</OutArgument>
       </Assign.To>
@@ -97,7 +101,7 @@
         <InArgument x:TypeArguments="x:String">[Username]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[user.Password]</OutArgument>
       </Assign.To>
@@ -105,7 +109,7 @@
         <InArgument x:TypeArguments="x:String">[Password]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:ICollection(x:String)">[user.RolesList]</OutArgument>
       </Assign.To>
@@ -113,7 +117,7 @@
         <InArgument x:TypeArguments="scg:ICollection(x:String)">[Roles]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="262.222222222222,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <Assign sap:VirtualizedContainerService.HintSize="769.777777777778,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[user.EmailAddress]</OutArgument>
       </Assign.To>
@@ -121,10 +125,49 @@
         <InArgument x:TypeArguments="x:String">[Email]</InArgument>
       </Assign.Value>
     </Assign>
-    <uwu:PostActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="Post User" Endpoint="[&quot;https://orchestrator.southcentralus.cloudapp.azure.com&quot;]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="262.222222222222,22.2222222222222" sap2010:WorkflowViewState.IdRef="PostActivity_1" TimeoutMS="30000">
-      <uwu:PostActivity.Request>
-        <uwu:UsersClientPostRequest UserDto="[user]" />
-      </uwu:PostActivity.Request>
-    </uwu:PostActivity>
+    <uwu:GetUsersActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" DisplayName="GetUsers" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="769.777777777778,22.2222222222222" sap2010:WorkflowViewState.IdRef="GetUsersActivity_1" Response="[getUserResponse]" TimeoutMS="30000">
+      <uwu:GetUsersActivity.Request>
+        <uwu:UsersClientGetUsersRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[String.Format(&quot;EmailAddress eq '{0}&quot;, Email)]" />
+      </uwu:GetUsersActivity.Request>
+    </uwu:GetUsersActivity>
+    <If Condition="[getUserResponse.Value.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="769.777777777778,617.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Put" sap:VirtualizedContainerService.HintSize="525.333333333333,466.222222222222" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="i:UserDto" Name="existingUser" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If Condition="[Not OverwriteIfExists]" sap:VirtualizedContainerService.HintSize="483.555555555556,211.111111111111" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Throw Exception="[New BusinessRuleException(&quot;User already exists&quot;)]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </If.Then>
+          </If>
+          <Assign sap:VirtualizedContainerService.HintSize="483.555555555556,60.4444444444444" sap2010:WorkflowViewState.IdRef="Assign_10">
+            <Assign.To>
+              <OutArgument x:TypeArguments="i:UserDto">[existingUser]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="i:UserDto">[getUserResponse.Value.First]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <uwu:PutByIdActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="PutById" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="483.555555555556,22.2222222222222" sap2010:WorkflowViewState.IdRef="PutByIdActivity_1" TimeoutMS="30000">
+            <uwu:PutByIdActivity.Request>
+              <uwu:UsersClientPutByIdRequest Id="[existingUser.Id.Value]" UserDto="[user]" />
+            </uwu:PutByIdActivity.Request>
+          </uwu:PutByIdActivity>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <uwu:PostActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="Post User" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="PostActivity_1" TimeoutMS="30000">
+          <uwu:PostActivity.Request>
+            <uwu:UsersClientPostRequest UserDto="[user]" />
+          </uwu:PostActivity.Request>
+        </uwu:PostActivity>
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>
