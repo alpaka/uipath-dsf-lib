@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>831.555555555556,1474.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>831.555555555556,1536.88888888889</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddUser_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -66,7 +66,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="811.555555555556,1374.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddUser" sap:VirtualizedContainerService.HintSize="811.555555555556,1436.88888888889" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="headers" />
       <Variable x:TypeArguments="i:UserDto" Default="[New UserDto]" Name="user" />
@@ -127,7 +127,7 @@
     </Assign>
     <uwu:GetUsersActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" DisplayName="GetUsers" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="769.777777777778,22.2222222222222" sap2010:WorkflowViewState.IdRef="GetUsersActivity_1" Response="[getUserResponse]" TimeoutMS="30000">
       <uwu:GetUsersActivity.Request>
-        <uwu:UsersClientGetUsersRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[String.Format(&quot;EmailAddress eq '{0}&quot;, Email)]" />
+        <uwu:UsersClientGetUsersRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[String.Format(&quot;EmailAddress eq '{0}'&quot;, Email)]" />
       </uwu:GetUsersActivity.Request>
     </uwu:GetUsersActivity>
     <If Condition="[getUserResponse.Value.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="769.777777777778,617.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
@@ -154,20 +154,18 @@
               <InArgument x:TypeArguments="i:UserDto">[getUserResponse.Value.First]</InArgument>
             </Assign.Value>
           </Assign>
-          <uwu:PutByIdActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="PutById" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="483.555555555556,22.2222222222222" sap2010:WorkflowViewState.IdRef="PutByIdActivity_1" TimeoutMS="30000">
-            <uwu:PutByIdActivity.Request>
-              <uwu:UsersClientPutByIdRequest Id="[existingUser.Id.Value]" UserDto="[user]" />
-            </uwu:PutByIdActivity.Request>
-          </uwu:PutByIdActivity>
+          <uwu:DeleteByIdActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" DisplayName="DeleteById" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="483.555555555556,22.2222222222222" sap2010:WorkflowViewState.IdRef="DeleteByIdActivity_1" TimeoutMS="30000">
+            <uwu:DeleteByIdActivity.Request>
+              <uwu:UsersClientDeleteByIdRequest If_Match="{x:Null}" Id="[existingUser.Id.Value]" />
+            </uwu:DeleteByIdActivity.Request>
+          </uwu:DeleteByIdActivity>
         </Sequence>
       </If.Then>
-      <If.Else>
-        <uwu:PostActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="Post User" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="PostActivity_1" TimeoutMS="30000">
-          <uwu:PostActivity.Request>
-            <uwu:UsersClientPostRequest UserDto="[user]" />
-          </uwu:PostActivity.Request>
-        </uwu:PostActivity>
-      </If.Else>
     </If>
+    <uwu:PostActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Response="{x:Null}" Username="{x:Null}" DisplayName="Post User" Endpoint="[OrchestratorURL]" Headers="[headers]" sap:VirtualizedContainerService.HintSize="769.777777777778,22.2222222222222" sap2010:WorkflowViewState.IdRef="PostActivity_1" TimeoutMS="30000">
+      <uwu:PostActivity.Request>
+        <uwu:UsersClientPostRequest UserDto="[user]" />
+      </uwu:PostActivity.Request>
+    </uwu:PostActivity>
   </Sequence>
 </Activity>
