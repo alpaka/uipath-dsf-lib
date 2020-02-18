@@ -5,6 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
+  <sap2010:Annotation.AnnotationText>UPTF00000110eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiV2FpdCB1bnRpbCBhIGxpc3Qgb2YgZS1tYWlscyB3aXRoIGEgc3BlY2lmaWMgc3ViamVjdCBhcnJpdmVzIGFuZCBvcHRpb25hbGx5IG1vdmUgdGhlbSB0byBhIHRhcmdldCBmb2xkZXIiLCI8VmVyc2lvbj5rX19CYWNraW5nRmllbGQiOjF9</sap2010:Annotation.AnnotationText>
   <sap:VirtualizedContainerService.HintSize>495.555555555556,425.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -58,7 +59,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="475.555555555556,365.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Wait until a list of e-mails with a specific subject arrives and optionally move them to a target folder" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="475.555555555556,365.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
     </Sequence.Variables>

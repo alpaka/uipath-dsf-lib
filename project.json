@@ -4,11 +4,10 @@
   "main": "NewActivity.xaml",
   "dependencies": {
     "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
-    "UiPath.Excel.Activities": "2.8.0-preview",
-    "UiPath.Mail.Activities": "1.7.2",
-    "UiPath.System.Activities": "19.12.0-preview",
-    "UiPath.UIAutomation.Activities": "19.12.0-preview",
-    "UiPath.WebAPI.Activities": "1.4.4"
+    "UiPath.Mail.Activities": "1.8.1-preview",
+    "UiPath.System.Activities": "20.2.0-preview",
+    "UiPath.UIAutomation.Activities": "20.2.0-preview",
+    "UiPath.WebAPI.Activities": "1.5.0-alpha.606820"
   },
   "webServices": [
     {
@@ -20,7 +19,7 @@
   ],
   "schemaVersion": "4.0",
   "studioVersion": "19.12.0.61",
-  "projectVersion": "1.0.7-alpha.14",
+  "projectVersion": "1.0.7-alpha.18",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
@@ -41,7 +40,7 @@
         "Test/ImportOutlookMSGFile_Test.xaml"
       ]
     },
-    "fileInfos": []
+    "fileInfoCollection": []
   },
   "expressionLanguage": "VisualBasic"
 }
