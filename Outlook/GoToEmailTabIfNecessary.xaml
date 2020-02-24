@@ -30,10 +30,7 @@
         <PickBranch.Trigger>
           <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element Inbox" sap:VirtualizedContainerService.HintSize="333.777777777778,68.4444444444444" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
             <ui:WaitUiElementAppear.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' matching:title='regex' title='^(?=Inbox).*Outlook' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' matching:title='regex' title='^(?=Inbox).*Outlook' /&gt;" TimeoutMS="60000">
                 <ui:Target.WaitForReady>
                   <InArgument x:TypeArguments="ui:WaitForReady" />
                 </ui:Target.WaitForReady>
@@ -46,10 +43,7 @@
         <PickBranch.Trigger>
           <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element Not Inbox" sap:VirtualizedContainerService.HintSize="333.777777777778,68.4444444444444" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2">
             <ui:WaitUiElementAppear.Target>
-              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' matching:title='regex' title='^(?!Inbox).*Outlook' /&gt;">
-                <ui:Target.TimeoutMS>
-                  <InArgument x:TypeArguments="x:Int32" />
-                </ui:Target.TimeoutMS>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' matching:title='regex' title='^(?!Inbox).*Outlook' /&gt;" TimeoutMS="60000">
                 <ui:Target.WaitForReady>
                   <InArgument x:TypeArguments="ui:WaitForReady" />
                 </ui:Target.WaitForReady>
