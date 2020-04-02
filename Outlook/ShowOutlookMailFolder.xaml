@@ -1,8 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OpenOutlook" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OpenOutlook" this:OpenOutlook.FolderPath="Inbox\Invoice2SAP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="FolderPath" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>472.888888888889,939.555555555556</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>442.666666666667,1005.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="34">
@@ -46,7 +46,7 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="OpenOutlook" sap:VirtualizedContainerService.HintSize="452.888888888889,839.555555555556" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence DisplayName="OpenOutlook" sap:VirtualizedContainerService.HintSize="452.888888888889,840.444444444444" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="moio:_Application" Name="ol" />
     </Sequence.Variables>
@@ -65,28 +65,21 @@
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.111111111111,492" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[FolderPath.Split(&quot;\&quot;c)]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.111111111111,492.888888888889" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[FolderPath.Split(&quot;\&quot;c)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="folder" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.555555555556,356.444444444444" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.555555555556,357.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Tree Item'" sap:VirtualizedContainerService.HintSize="333.777777777778,106.666666666667" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" SimulateClick="False">
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" AlterIfDisabled="True" ClickType="CLICK_SINGLE" DisplayName="Click 'Tree Item'" sap:VirtualizedContainerService.HintSize="333.777777777778,106.666666666667" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" SimulateClick="False">
               <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
+                <ui:CursorPosition OffsetX="60" OffsetY="10" Position="TopLeft" />
               </ui:Click.CursorPosition>
               <ui:Click.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="80fc619fa6bcabadc481f462620bfaf6" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='NetUITreeView' name='Mail Folders' /&gt;&lt;uia cls='NetUIWBTreeDisplayNode' name='{{folder}}*' /&gt;">
@@ -99,7 +92,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="333.777777777778,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="right" KeyModifiers="None" SpecialKey="True">
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="333.777777777778,118.222222222222" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="right" KeyModifiers="None" SpecialKey="True">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='NetUITreeView' name='Mail Folders' /&gt;&lt;uia cls='NetUIWBTreeDisplayNode' name='{{folder}}*' /&gt;">
                   <ui:Target.TimeoutMS>
