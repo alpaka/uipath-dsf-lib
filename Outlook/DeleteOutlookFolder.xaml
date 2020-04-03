@@ -1,0 +1,110 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="zz_Test" this:zz_Test.FolderName="Inbox\Invoice2SAP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:moio="clr-namespace:Microsoft.Office.Interop.Outlook;assembly=Microsoft.Office.Interop.Outlook" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="FolderName" Type="InArgument(x:String)" />
+    <x:Property Name="WasFolderDeleted" Type="OutArgument(x:Boolean)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:Annotation.AnnotationText>UPTF00000138eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiVXRpbGl0eSB0byBnZXQgYW4gb3V0bG9vayBmb2xkZXIuIE91dHB1dCBpcyBPYmplY3QgYmVjYXVzZSBXRiBkb2Vzbid0IHBsYXkgbmljZSB3aXRoIEludGVyZmFjZXMuIENhc3QgaXQgdG8gTUFQSUZvbGRlciBpbiB0aGUgY2FsbGVyIiwiPFZlcnNpb24+a19fQmFja2luZ0ZpZWxkIjoxfQ==</sap2010:Annotation.AnnotationText>
+  <sap:VirtualizedContainerService.HintSize>468.888888888889,707.111111111111</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.Office.Interop.Outlook</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Outlook</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Utility to get an outlook folder. Output is Object because WF doesn't play nice with Interfaces. Cast it to MAPIFolder in the caller" DisplayName="CreateOutlookFolder" sap:VirtualizedContainerService.HintSize="479.111111111111,490.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="moio:_Application" Name="ol" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="437.333333333333,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xD;&#xA;outlookApp = New Application&#xD;&#xA;Dim myFolder As MAPIFolder&#xD;&#xA;myFolder = outlookApp.Session.GetDefaultFolder(OlDefaultFolders.olFolderInbox).Store.GetRootFolder()&#xD;&#xA;&#xD;&#xA;WasFolderDeleted = False&#xD;&#xA;&#xD;&#xA;Dim childFolder As MAPIFolder&#xD;&#xA;Dim navPath As String() = FolderName.Split(&quot;\&quot;c)&#xD;&#xA;For Each iFolder As String In navPath&#xD;&#xA;&#x9;childFolder = Nothing&#xD;&#xA;&#x9;For Each jFolder As MAPIFolder In myFolder.Folders&#xD;&#xA;&#x9;&#x9;If jFolder.Name = iFolder Then&#xD;&#xA;&#x9;&#x9;&#x9;childFolder = myFolder.Folders(iFolder)&#xD;&#xA;&#x9;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;If Not childFolder Is Nothing Then&#xD;&#xA;&#x9;&#x9;myFolder = childFolder&#xD;&#xA;&#x9;End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;If Not childFolder Is Nothing Then&#xD;&#xA;&#x9;childFolder.Delete&#xD;&#xA;&#x9;WasFolderDeleted = True&#xD;&#xA;End If" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+          <ui:InvokeCode.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="FolderName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FolderName" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:Boolean" x:Key="WasFolderDeleted">
+              <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="WasFolderDeleted" />
+            </InArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.555555555556,22.6666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="ex" />
+            </ActivityAction.Argument>
+            <If Condition="[Not ex.InnerException Is Nothing]" sap:VirtualizedContainerService.HintSize="483.555555555556,211.111111111111" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Throw Exception="[ex.InnerException]" sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </If.Then>
+              <If.Else>
+                <Rethrow sap:VirtualizedContainerService.HintSize="200,22.2222222222222" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+              </If.Else>
+            </If>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

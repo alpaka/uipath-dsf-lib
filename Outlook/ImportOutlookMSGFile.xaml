@@ -9,7 +9,7 @@
     <x:Null />
   </mva:VisualBasic.Settings>
   <sap2010:Annotation.AnnotationText>UPTF00000140eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiSW1wb3J0IGEgLm1zZyBmaWxlLiBNYWtlIHN1cmUgTVNHUGF0aCBpcyBhYnNvbHV0ZSBhbmQgdG8gaW1wb3J0IHRoZSBNaWNyb3NvZnQuT2ZmaWNlLkludGVyb3AuT3V0bG9vayBuYW1lc3BhY2UgbWFudWFsbHkgaW4gdGhlIGNhbGxpbmcgZmlsZSIsIjxWZXJzaW9uPmtfX0JhY2tpbmdGaWVsZCI6MX0=</sap2010:Annotation.AnnotationText>
-  <sap:VirtualizedContainerService.HintSize>545.333333333333,869.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>515.111111111111,934.222222222222</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>zz_Test_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -86,7 +86,7 @@
     </If>
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="483.555555555556,398.222222222222" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xD;&#xA;outlookApp = New Application&#xD;&#xA;&#xD;&#xA;Dim mItem As MailItem&#xD;&#xA;mItem = DirectCast(outlookApp.Session.OpenSharedItem(MSGPath), MailItem)&#xD;&#xA;If Not myFolder Is Nothing&#xD;&#xA;&#x9;mItem.Move(DirectCast(myFolder, MAPIFolder))&#xD;&#xA;End If&#xD;&#xA;Subject = mItem.Subject&#xD;&#xA;&#xD;&#xA;Dim mItemNew As MailItem&#xD;&#xA;If ForwardToMyself Then&#xD;&#xA;&#x9;mItemNew = mItem.Forward()&#xD;&#xA;&#x9;mItemNew.Subject = mItem.Subject&#xD;&#xA;&#x9;For Each Acc As Account In outlookApp.Session.Accounts&#xD;&#xA;&#x9;&#x9;mItemNew.Recipients.Add(Acc.SmtpAddress)&#xD;&#xA;&#x9;&#x9;mItemNew.SendUsingAccount = Acc&#xD;&#xA;&#x9;&#x9;Exit For&#xD;&#xA;&#x9;Next&#xD;&#xA;&#x9;mItemNew.Send&#xD;&#xA;End If" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim outlookApp As Application&#xA;outlookApp = New Application&#xA;&#xA;Dim mItem As MailItem&#xA;mItem = DirectCast(outlookApp.Session.OpenSharedItem(MSGPath), MailItem)&#xA;If Not myFolder Is Nothing&#xA;&#x9;mItem.Move(DirectCast(myFolder, MAPIFolder))&#xA;End If&#xA;Subject = mItem.Subject&#xA;&#xA;Dim mItemNew As MailItem&#xA;If ForwardToMyself Then&#xA;&#x9;mItemNew = mItem.Forward()&#xA;&#x9;mItemNew.Subject = mItem.Subject&#xA;&#x9;For Each Acc As Account In outlookApp.Session.Accounts&#xA;&#x9;&#x9;mItemNew.Recipients.Add(Acc.SmtpAddress)&#xA;&#x9;&#x9;mItemNew.SendUsingAccount = Acc&#xA;&#x9;&#x9;Exit For&#xA;&#x9;Next&#xA;&#x9;mItemNew.Send&#xA;End If" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.777777777778,164.444444444444" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
           <ui:InvokeCode.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="FolderName">[FolderName]</InArgument>
             <InArgument x:TypeArguments="x:Object" x:Key="myFolder">[myFolder]</InArgument>
