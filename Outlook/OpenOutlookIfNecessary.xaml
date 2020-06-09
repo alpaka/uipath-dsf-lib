@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OpenOutlookIfNecessary" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1470.22222222222,2457.33333333333" sap2010:WorkflowViewState.IdRef="OpenOutlookIfNecessary_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OpenOutlookIfNecessary" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1704,2861.33333333333" sap2010:WorkflowViewState.IdRef="OpenOutlookIfNecessary_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System.Activities</x:String>
@@ -25,7 +25,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="16">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -42,9 +42,14 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="OpenOutlookIfNecessary" sap:VirtualizedContainerService.HintSize="1480.44444444444,2292.44444444444" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OpenOutlookIfNecessary" sap:VirtualizedContainerService.HintSize="1714.22222222222,2696.44444444444" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="outlookExists" />
     </Sequence.Variables>
@@ -53,29 +58,30 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:UiElementExists DisplayName="Element Exists 'Title Bar'" Exists="[outlookExists]" sap:VirtualizedContainerService.HintSize="1438.66666666667,106.666666666667" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+    <ui:UiElementExists DisplayName="Element Exists 'Title Bar'" Exists="[outlookExists]" sap:VirtualizedContainerService.HintSize="1672.44444444444,106.666666666667" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
       <ui:UiElementExists.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7823480d899398967ad13a1b40f945a3" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='MsoCommandBar' idx='1' /&gt;" TimeoutMS="200" WaitForReady="NONE" />
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f3990157-0a76-4cde-a3f7-038ee64177bd" InformativeScreenshot="7823480d899398967ad13a1b40f945a3" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='MsoCommandBar' idx='1' /&gt;" TimeoutMS="200" WaitForReady="NONE" />
       </ui:UiElementExists.Target>
     </ui:UiElementExists>
-    <If Condition="[Not outlookExists]" sap:VirtualizedContainerService.HintSize="1438.66666666667,2053.33333333333" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[Not outlookExists]" sap:VirtualizedContainerService.HintSize="1672.44444444444,2457.33333333333" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="1294.22222222222,1902.22222222222" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap:VirtualizedContainerService.HintSize="1294.22222222222,2306.22222222222" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="1252.44444444444,1809.77777777778" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+          <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="1252.44444444444,2213.77777777778" sap2010:WorkflowViewState.IdRef="RetryScope_1">
             <ui:RetryScope.ActivityBody>
               <ActivityAction>
-                <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1210.66666666667,1632.44444444444" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1210.66666666667,2036.44444444444" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:OpenApplication ApplicationWindow="{x:Null}" Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Open Application 'OUTLOOK.EXE Inbox'" FileName="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" sap:VirtualizedContainerService.HintSize="1168.88888888889,231.555555555556" sap2010:WorkflowViewState.IdRef="OpenApplication_1" InformativeScreenshot="f8cd374fbdcd2e6917cca6641a427b4f" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;" TimeoutMS="120000">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1168.88888888889,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Trying to open outlook&quot;]" />
+                  <ui:OpenApplication ApplicationWindow="{x:Null}" Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Open Application 'OUTLOOK.EXE Inbox'" FileName="C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" sap:VirtualizedContainerService.HintSize="1168.88888888889,231.555555555556" sap2010:WorkflowViewState.IdRef="OpenApplication_1" InformativeScreenshot="f8cd374fbdcd2e6917cca6641a427b4f" Selector="&lt;wnd app='outlook.exe' /&gt;" TimeoutMS="120000">
                     <ui:OpenApplication.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
@@ -91,12 +97,12 @@
                       </ActivityAction>
                     </ui:OpenApplication.Body>
                   </ui:OpenApplication>
-                  <Pick sap:VirtualizedContainerService.HintSize="1168.88888888889,1121.77777777778" sap2010:WorkflowViewState.IdRef="Pick_1">
-                    <PickBranch DisplayName="PickBranch reminders" sap:VirtualizedContainerService.HintSize="611.555555555556,1075.55555555556" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+                  <Pick sap:VirtualizedContainerService.HintSize="1168.88888888889,1256.44444444444" sap2010:WorkflowViewState.IdRef="Pick_1">
+                    <PickBranch DisplayName="PickBranch reminders" sap:VirtualizedContainerService.HintSize="611.555555555556,1210.22222222222" sap2010:WorkflowViewState.IdRef="PickBranch_1">
                       <PickBranch.Trigger>
                         <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'Group  SearchControlsRo...'" sap:VirtualizedContainerService.HintSize="333.777777777778,106.666666666667" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_2">
                           <ui:WaitUiElementAppear.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="66488ad2e76854038a3a9fed63fd01d3" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='*Reminder(s)*' /&gt;">
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="09add438-4d86-46f9-a8de-ca2ffa2d2b3d" InformativeScreenshot="66488ad2e76854038a3a9fed63fd01d3" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='*Reminder(s)*' /&gt;">
                               <ui:Target.TimeoutMS>
                                 <InArgument x:TypeArguments="x:Int32" />
                               </ui:Target.TimeoutMS>
@@ -107,7 +113,7 @@
                           </ui:WaitUiElementAppear.Target>
                         </ui:WaitUiElementAppear>
                       </PickBranch.Trigger>
-                      <Sequence sap:VirtualizedContainerService.HintSize="561.777777777778,767.111111111111" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence sap:VirtualizedContainerService.HintSize="561.777777777778,901.777777777778" sap2010:WorkflowViewState.IdRef="Sequence_6">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Boolean" Name="areYouSureExists" />
                         </Sequence.Variables>
@@ -116,6 +122,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Dismissing reminders&quot;]" />
                         <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Button'" sap:VirtualizedContainerService.HintSize="520,106.666666666667" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True" SimulateClick="False">
                           <ui:Click.CursorPosition>
                             <ui:CursorPosition Position="Center">
@@ -128,7 +135,7 @@
                             </ui:CursorPosition>
                           </ui:Click.CursorPosition>
                           <ui:Click.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="d31e400806db0afd8505dd248b13be94" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='1 Reminder(s)' /&gt;&lt;wnd ctrlid='8345' title='Dismiss &amp;amp;All' /&gt;">
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="34ddceb2-afa0-4b29-9aca-774785c981c2" InformativeScreenshot="d31e400806db0afd8505dd248b13be94" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='1 Reminder(s)' /&gt;&lt;wnd ctrlid='8345' title='Dismiss &amp;amp;All' /&gt;">
                               <ui:Target.TimeoutMS>
                                 <InArgument x:TypeArguments="x:Int32" />
                               </ui:Target.TimeoutMS>
@@ -140,7 +147,7 @@
                         </ui:Click>
                         <ui:UiElementExists DisplayName="Element Exists are you sure" Exists="[areYouSureExists]" sap:VirtualizedContainerService.HintSize="520,68.4444444444444" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
                           <ui:UiElementExists.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='20' aaname='Are you sure you want to dismiss all these reminders?' /&gt;" TimeoutMS="1000">
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="532d9f80-0611-4e3a-a74e-98bffa9e91d9" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='20' aaname='Are you sure you want to dismiss all these reminders?' /&gt;" TimeoutMS="1000">
                               <ui:Target.WaitForReady>
                                 <InArgument x:TypeArguments="ui:WaitForReady" />
                               </ui:Target.WaitForReady>
@@ -157,7 +164,7 @@
                               </sap:WorkflowViewStateService.ViewState>
                               <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check always dismiss" sap:VirtualizedContainerService.HintSize="333.777777777778,68.4444444444444" sap2010:WorkflowViewState.IdRef="Check_1">
                                 <ui:Check.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='99' title='&amp;amp;Don&amp;apos;t show this message again' /&gt;">
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4371ea81-c497-420a-8e39-f8847525ebbf" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='99' title='&amp;amp;Don&amp;apos;t show this message again' /&gt;">
                                     <ui:Target.TimeoutMS>
                                       <InArgument x:TypeArguments="x:Int32" />
                                     </ui:Target.TimeoutMS>
@@ -179,7 +186,7 @@
                                   </ui:CursorPosition>
                                 </ui:Click.CursorPosition>
                                 <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='6' title='&amp;amp;Yes' /&gt;">
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e0fbd8de-5210-4add-b06f-21a46f7a53d3" Selector="&lt;wnd app='outlook.exe' cls='#32770' title='Microsoft Outlook' idx='*' /&gt;&lt;wnd ctrlid='6' title='&amp;amp;Yes' /&gt;">
                                     <ui:Target.TimeoutMS>
                                       <InArgument x:TypeArguments="x:Int32" />
                                     </ui:Target.TimeoutMS>
@@ -194,11 +201,11 @@
                         </If>
                       </Sequence>
                     </PickBranch>
-                    <PickBranch DisplayName="PickBranch status bar" sap:VirtualizedContainerService.HintSize="383.555555555556,1075.55555555556" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+                    <PickBranch DisplayName="PickBranch status bar" sap:VirtualizedContainerService.HintSize="383.555555555556,1210.22222222222" sap2010:WorkflowViewState.IdRef="PickBranch_2">
                       <PickBranch.Trigger>
                         <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'Group  SearchControlsRo...'" sap:VirtualizedContainerService.HintSize="333.777777777778,106.666666666667" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
                           <ui:WaitUiElementAppear.Target>
-                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f4cfc1d9693cf62413faf7c564669e37" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='MsoCommandBar' idx='1' /&gt;">
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dab07cbb-b1ac-4ab7-a1e7-0c97da992f3e" InformativeScreenshot="f4cfc1d9693cf62413faf7c564669e37" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;">
                               <ui:Target.TimeoutMS>
                                 <InArgument x:TypeArguments="x:Int32" />
                               </ui:Target.TimeoutMS>
@@ -209,11 +216,12 @@
                           </ui:WaitUiElementAppear.Target>
                         </ui:WaitUiElementAppear>
                       </PickBranch.Trigger>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.777777777778,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Inbox open&quot;]" />
                     </PickBranch>
                   </Pick>
                   <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'Group  SearchControlsRo...'" sap:VirtualizedContainerService.HintSize="1168.88888888889,106.666666666667" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_3">
                     <ui:WaitUiElementAppear.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f4cfc1d9693cf62413faf7c564669e37" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='MsoCommandBar' idx='1' /&gt;">
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4f925aa6-64f6-4337-8799-b18dee86b8c1" InformativeScreenshot="f4cfc1d9693cf62413faf7c564669e37" Selector="&lt;wnd app='outlook.exe' cls='rctrl_renwnd32' title='*Outlook' /&gt;&lt;uia cls='MsoCommandBar' idx='1' /&gt;">
                         <ui:Target.TimeoutMS>
                           <InArgument x:TypeArguments="x:Int32" />
                         </ui:Target.TimeoutMS>
@@ -223,6 +231,7 @@
                       </ui:Target>
                     </ui:WaitUiElementAppear.Target>
                   </ui:WaitUiElementAppear>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1168.88888888889,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Opened outlook&quot;]" />
                 </Sequence>
               </ActivityAction>
             </ui:RetryScope.ActivityBody>
@@ -232,6 +241,9 @@
           </ui:RetryScope>
         </Sequence>
       </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.777777777778,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Outlook already opened&quot;]" />
+      </If.Else>
     </If>
   </Sequence>
 </Activity>
